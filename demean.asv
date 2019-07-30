@@ -4,8 +4,9 @@ function [y, mu] = demean(x,dim)
 %   y = DEMEAN(x) subtracts the mean of variable x from element in x.
 %
 %   [y, mu] = DEMEAN(x,dim) subtracts the mean along dimension dim and
-%   returns the original mean mu. The default dimension that DEMEAN uses is
-%   the first non-singleton dimension
+%   returns the original mean mu. The default dimension is the first
+%   non-singleton dimensio
+
 %
 %   See also MEAN
 %
@@ -20,7 +21,7 @@ end
 %% Remove mean
 
 % [] is a special case for mean, just handle it out here.
-if isequal(x,[]), y = x; return; end
+if isequal(x,[]), z = x; return; end
 
 if nargin < 2
     % Figure out which dimension to work along.
@@ -28,9 +29,9 @@ if nargin < 2
     if isempty(dim), dim = 1; end
 end
 
-% Compute mean of x and subtract it
+% Compute X's mean and subtract it
 mu = mean(x,dim);
-y  = bsxfun(@minus, x, mu);
+y = bsxfun(@minus, x, mu);
 
 
 end
