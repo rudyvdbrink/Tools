@@ -1,7 +1,7 @@
 function [y, mu] = demean(x,dim)
-%DEMEAN  De-mean a signal.
+%DEMEAN  De-mean a variable.
 %   
-%   y = DEMEAN(x) subtracts the mean of variable x from element in x.
+%   y = DEMEAN(x) subtracts the mean of variable x from the elements in x.
 %
 %   [y, mu] = DEMEAN(x,dim) subtracts the mean along dimension dim and
 %   returns the original mean mu. The default dimension that DEMEAN uses is
