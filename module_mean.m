@@ -1,5 +1,49 @@
-function M = module_mean(M,modz,varargin)
-%usage: M = module_mean(M,modz,collapse,incldiag)
+function Mz = module_mean(M,modz,varargin)
+% MODULE_MEAN averages over module elements in a square matrix.
+%
+%   Usage:
+%     Mz = module_mean(M,modz) 
+%     Mz = module_mean(M,modz,collapse,incldiag) 
+%
+%   Input:
+%     M:          square matrix to be averaged over
+%     modz:       vector of module indices, with one numeric value per
+%                 row/colum index of M 
+%     collapse:   (optional) return (1) or not (0) a matrix collapsed
+%                 across module elements (default: 0). If collapse is not 
+%                 selected, Mz is the same size as M. If selected, Mz has 
+%                 as many rows/columns as there are unique modules in modz.
+%     incldiag:   (optional) include the diagonal in the average (1) or not
+%                 (0). If the diagonal is excluded, the respective values 
+%                 set to NaN and ignored in the average (default: 0).
+%
+%   Output:
+%     Mz:         the matrix M averaged across module elements
+%
+%   Example:
+%     M = rand(10); %create some random numbers
+%     modz = [1 1 1 2 2 3 3 3 4 4]; %modules to average across
+%     
+%     figure
+%     subplot(1,2,1)
+%     imagesc(M) %plot the random number matrix
+%     axis square %format the axis to be square
+%     module_plot(modz,1,{'k','linewidth',2}) %outline the modules (on diagonal)
+%     module_plot(modz,0,{'k--'}) %outline the modules (everywhere)
+%     axis off %we don't need to see the ticks so turn them off
+%     set(gca,'clim',[0 1]) %fix color range
+% 
+%     Mz = module_mean(M,modz,0,1); %average across module elements without collapsing and including the diagonal
+%     
+%     subplot(1,2,2)
+%     imagesc(Mz)
+%     axis square
+%     module_plot(modz,1,{'k','linewidth',2}) %outline the modules (on diagonal)
+%     module_plot(modz,0,{'k--'}) %outline the modules (everywhere)
+%     axis off %we don't need to see the ticks so turn them off
+%     set(gca,'clim',[0 1]) %fix color range, same as previous plot
+%
+% RL van den Brink, 2015
 
 
 %% Check input
@@ -19,6 +63,10 @@ else
     elseif nargin > 4
         error('too many input arguments')
     end
+end
+
+if isempty(collapse)
+    collapse = 0;
 end
 
 if size(M,1) ~= size(M,2)
@@ -55,6 +103,5 @@ else
         end
     end
 end
-M = Mz;
 
 

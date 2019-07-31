@@ -1,7 +1,7 @@
-function module_plot(modz,ind,center,plotopts)
-%usage: module_plot(modz,ind,center,plotopts)
+function module_plot(modz,center,plotopts)
+%usage: module_plot(modz,center,plotopts)
 
-if nargin < 2 || isempty(center)
+if nargin < 1 || isempty(center)
     help module_plot
     return
 end
@@ -11,7 +11,7 @@ if nargin < 3 || isempty(center)
 end
 
 defaultopts={'-k'};
-if nargin<4 || isempty(plotopts)
+if nargin<3 || isempty(plotopts)
     plotopts=defaultopts; 
 end
 if ~iscell(plotopts)
@@ -19,7 +19,7 @@ if ~iscell(plotopts)
 end
 
 
-intersections = find(diff(modz(ind)));
+intersections = find(diff(modz));
 nintersections = length(intersections);
 
 shg
