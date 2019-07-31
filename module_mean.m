@@ -43,6 +43,8 @@ function Mz = module_mean(M,modz,varargin)
 %     axis off %we don't need to see the ticks so turn them off
 %     set(gca,'clim',[0 1]) %fix color range, same as previous plot
 %
+%       See also: MODULE_PLOT
+%
 % RL van den Brink, 2015
 
 
