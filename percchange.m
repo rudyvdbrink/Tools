@@ -1,29 +1,37 @@
-function y = percchange(x)
-%PERCCHANGE  Convert vector to percent change from mean.
+function [y, mu] = percchange(x,dim)
+%PERCCHANGE  Convert variable to percent change from mean.
 %   
-%   y = PERCCHANGE(x) subtracts the mean of signal x from each time-point
-%   in x, then divides by the mean of x, and multiplies by 100.
-%   Input should be a two dimensional vector which can be either a row or a
-%   column vector.
+%   y = PERCCHANGE(x) subtracts the mean of variable x from the elements in
+%   x, divides by the mean, and multiplies by 100.
 %
-%   See also MEAN
+%   [y, mu] = PERCCHANGE(x,dim) normalizes along dimension dim and returns 
+%   the original mean mu. The default dimension that PERCCHANGE uses is
+%   the first non-singleton dimension.
 %
-%   Rudy van den Brink, 2019
+%   See also MEAN, DEMEAN.
+%
+%   Rudy van den Brink, 2012
 
 %% Check the input
 
-if nargin ~= 1
-    error('Im sorry Dave, but I cant let you do that. You need just one input argument')
+if nargin > 2
+    error('Im sorry Dave, but I cant let you do that. Provide two inputs max.')
 end
 
-if length(size(x)) > 2
-    error('Input should be a two dimensional vector')
+%% Remove mean
+
+% [] is a special case for mean, just handle it out here.
+if isequal(x,[]), y = x; return; end
+
+if nargin < 2
+    % figure out which dimension to work along.
+    dim = find(size(x) ~= 1, 1);
+    if isempty(dim), dim = 1; end
 end
 
-%% Convert to percent change
-
-m = mean(x);
-y = ((x-m)/m)*100;
-
+mu = mean(x,dim); %compute mean of x and 
+y  = bsxfun(@minus, x, mu); %subtract the mean 
+y  = bsxfun(@rdivide, y, mu); %divide by the mean
+y  = bsxfun(@times, y, 100); %multiply by 100
 
 end
