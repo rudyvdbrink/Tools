@@ -14,13 +14,13 @@ function [r, p, ci, r_null] = permcorr(a,b,varargin)
 %                   if there is no a priori expectation, then use 'tail' = 'both'
 %                   if the a priori expectation is that a is positively correlated with b, then use 'tail' = 'right'
 %                   if the a priori expectation is that a is negatively correlated with b, then use 'tail' = 'left'
-%     CI:          (optional) what confidence interval to return (defult: 95%) 
+%     CI: 
 %
 %   Output:
 %     r:          the regular pearson correlation coefficient
 %     pval:       p-value of permutation test. Discard H0 if pval is small.
-%     ci:         confidence interval of the permuted null distribution
-%     r_null:     the permuted null distribution
+%     diff:       mean(a)-mean(b)
+%     diff_null:  the permuted null distribution
 
 %% check input
 if nargin < 2
