@@ -1,4 +1,4 @@
-function [h, p, diff, diff_null] = permtestn2(a,varargin)
+function [h, p, diff, diff_null] = permtest2(a,varargin)
 %   Non-parametric permutation test to compare means using
 %   between-participant shuffling. Use as a two-sample permutation test.
 %
@@ -6,9 +6,9 @@ function [h, p, diff, diff_null] = permtestn2(a,varargin)
 %   HA: the two populations have unequal means
 %
 %   Usage:
-%     [h p diff diff_null] = permtest(a)                          (compare to zero)
-%     [h p diff diff_null] = permtest(a,b)                        (compare to a particular value, or compare the mean of two distributions)
-%     [h p diff diff_null] = permtest(a,b,npermutes,pthresh,tail,dim)
+%     [h p diff diff_null] = permtest2(a)                          (compare to zero)
+%     [h p diff diff_null] = permtest2(a,b)                        (compare to a particular value, or compare the mean of two distributions)
+%     [h p diff diff_null] = permtest2(a,b,npermutes,pthresh,tail,dim)
 %
 %   Input:
 %     a:          distribution 1
