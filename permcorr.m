@@ -7,8 +7,8 @@ function [r, p, ci, r_null] = permcorr(a,b,varargin)
 %     [r p ci r_null] = permcorr(a,b,npermutes,tail,CI)
 %
 %   Input:
-%     a:          distribution 1
-%     b:          distribution 2
+%     a:          distribution 1 (should be a vector)
+%     b:          distribution 2 (should be a vector, same length as distribution 1
 %     npermutes:  (optional) the number of permutations. default: 1000
 %     tail:       (optional) test one-tailed (specify 'right' or 'left') or two-tailed (specify 'both'). default: two-tailed
 %                   if there is no a priori expectation, then use 'tail' = 'both'
