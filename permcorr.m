@@ -1,4 +1,7 @@
 function [r, p, ci, r_null] = permcorr(a,b,varargin)
+%   Non-parametric permutation test to conduct one-tailed correlation
+%   testing.
+%
 %  Usage:
 %     [r p ci r_null] = permcorr(a,b)                         
 %     [r p ci r_null] = permcorr(a,b,npermutes,tail,CI)
