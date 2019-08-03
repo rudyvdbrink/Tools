@@ -111,7 +111,6 @@ lmax = (2*sigma^2) * ( (p+q)/2 + sqrt(p*q)) ;
 rho = (1/pi * sigma .* dat) .* sqrt( (lmax - dat.^2) -  (dat - lmin) );
 
 %% grid search fitting
-
 if strcmpi(method,'grid')
     d = zeros(n,1);
     for ri = 1:n
@@ -120,9 +119,10 @@ if strcmpi(method,'grid')
     [~, i] = min(d.^2);
     x = range(i);    
     if sum(x==[range(1) range(end)])        
-        warning('fitting parameter on range bound, consider widening fitting grid')
+        warning('fitting parameter on range bound, consider widening search grid')
     end    
-    %% gradient descent fitting
+    
+%% gradient descent fitting
 elseif strcmpi(method,'gradient')    
     options = optimset('MaxIter',n,'MaxFunEvals',n);  %  set Simplex options to perform rigorous search
     f = @(x) sum((dat-rho*x).^2);
@@ -133,5 +133,5 @@ end
 
 rho = rho*x;
 k = find(dat-rho > 0,1,'last');
-
+if isempty(k); k = 0; end
 
