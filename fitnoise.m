@@ -4,7 +4,7 @@ function [rho, k] = fitnoise(lambda,varargin)
 %   distribution. 
 %
 %   In this context, "noise" means randomly normally distributed with zero
-%   mean. FITNOISE uses grid search by default.
+%   mean. FITNOISE uses grid search for fitting by default.
 %
 %   This function implements the method proposed by Mitra and Pesaran
 %   (1999) Analysis of Dynamic Brain Imaging Data. Bio Phys J (see 
@@ -22,7 +22,7 @@ function [rho, k] = fitnoise(lambda,varargin)
 %   Input (in case of grid search):
 %    lambda:   square matrix with eigenvalues on its diagonal
 %    n:        (optional) number of iterations for fitting (default: 20000)
-%    range:    (optional) the range of scalars to fit across (default -20 to 20)
+%    range:    (optional) the range of scalars to fit across (default -1 to 1)
 %
 %   Input (in case of gradient descent):
 %    lambda:   square matrix with eigenvalues on its diagonal
@@ -39,13 +39,14 @@ function [rho, k] = fitnoise(lambda,varargin)
 % 
 %    figure
 %    bar(diag(s)); %make a bar plot of the eigenvalues
-%    [rho, k] = fitnoise3(s,'gradient',0,1000); %fit the noise distribution
+%    %fit the noise distribution using gradient descent, with a starting
+%    %value of 0, and a max of 1000 function evaluations
+%    [rho, k] = fitnoise3(s,'gradient',0,1000); 
 %    hold on
 %    plot(rho,'r','linewidth',2) %plot the noise distribution
 %    legend('Eigenvalues','\rho')
 %
 % RL van den Brink, 2018
-
 
 %% check input
 
@@ -54,7 +55,7 @@ if nargin == 0
 elseif nargin == 1
     method = 'grid';
     n     = 20000;
-    range = linspace(-20,20,n);
+    range = linspace(-1,1,n);
 elseif nargin > 1
     method = varargin{1};
 end
@@ -63,10 +64,10 @@ end
 if strcmpi(method,'grid') 
     if nargin == 2
         n     = 20000;
-        range = linspace(-20,20,n);
+        range = linspace(-1,1,n);
     elseif nargin == 3
         n     = varargin{2};
-        range = linspace(-20,20,n);
+        range = linspace(-1,1,n);
     elseif nargin == 4
         n     = varargin{2};
         range = varargin{3};
