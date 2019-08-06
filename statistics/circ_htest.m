@@ -81,9 +81,9 @@ m = min(alpha(:));
 M = max(alpha(:));
 
 if m >=0 && M <= 360
-	alpha1 = ang2rad(alpha1);
+    alpha1 = ang2rad(alpha1);
 elseif m >= -pi && M <= pi
-	alpha1(alpha1 < 0) = alpha1(alpha1 < 0) + (2*pi);
+    alpha1(alpha1 < 0) = alpha1(alpha1 < 0) + (2*pi);
 elseif m >= -180 && M <= 180
     alpha1(alpha1 < 0) = alpha1(alpha1 < 0) + 360;
     alpha1 = ang2rad(alpha1);
@@ -94,9 +94,9 @@ m = min(alpha(:));
 M = max(alpha(:));
 
 if m >=0 && M <= 360
-	alpha2 = ang2rad(alpha2);
+    alpha2 = ang2rad(alpha2);
 elseif m >= -pi && M <= pi
-	alpha2(alpha2 < 0) = alpha2(alpha2 < 0) + (2*pi);
+    alpha2(alpha2 < 0) = alpha2(alpha2 < 0) + (2*pi);
 elseif m >= -180 && M <= 180
     alpha2(alpha2 < 0) = alpha2(alpha2 < 0) + 360;
     alpha2 = ang2rad(alpha2);
