@@ -39,19 +39,17 @@ elseif nargin == 3 && ~isempty(ind)
     end
 end
 
-
 %% Re-arrange the matrix
 
 %formatting by module
 if ~arrange_back
     [~,ind] = sort(modz); %sort by module
-    %formatting back to original form
+%formatting back to original form
 else
     [~,ind] = sort(ind); %sort by index
 end
 
 %arrange by indices
 Mz = M(ind,ind); 
-
 
 end
