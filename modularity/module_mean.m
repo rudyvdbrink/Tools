@@ -32,6 +32,7 @@ function Mz = module_mean(M,modz,varargin)
 %     module_plot(modz,0,{'k--'}) %outline the modules (everywhere)
 %     axis off %we don't need to see the ticks so turn them off
 %     set(gca,'clim',[0 1]) %fix color range
+%     title('Original')
 % 
 %     Mz = module_mean(M,modz,0,1); %average across module elements without collapsing and including the diagonal
 %     
@@ -42,6 +43,7 @@ function Mz = module_mean(M,modz,varargin)
 %     module_plot(modz,0,{'k--'}) %outline the modules (everywhere)
 %     axis off %we don't need to see the ticks so turn them off
 %     set(gca,'clim',[0 1]) %fix color range, same as previous plot
+%     title('Module average')
 %
 %       See also: MODULE_PLOT
 %
